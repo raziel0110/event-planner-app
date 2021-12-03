@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\EmployeeException;
 use App\Models\Employee;
+use App\Services\EmployeeService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class EmployeesController extends Controller
 {
@@ -26,7 +29,28 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $this->validate($request, [
+                'name'     => 'required|string|min:5',
+                'email'    => 'required|email',
+                'phone'    => 'required|min:10',
+                'type'     => ['required', Rule::in(Employee::TYPES)],
+                'event_id' => 'required|numeric'
+            ]);
+    
+            $employee = Employee::create([
+                'name'     => $request->input('name'),
+                'email'    => $request->input('email'),
+                'phone'    => $request->input('phone'),
+                'type'     => $request->input('type'),
+                'event_id' => $request->input('event_id')
+            ]);
+
+            return response()->json(['employee' => $employee], Response::HTTP_CREATED);
+        } catch (EmployeeException $e) {
+            return $e;
+        }
+       
     }
 
     /**
@@ -35,9 +59,13 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        //
+        try {
+            return response()->json(['employee' => EmployeeService::getEmployee($id)]);
+        } catch (EmployeeException $e) {
+            return $e;
+        }
     }
 
     /**

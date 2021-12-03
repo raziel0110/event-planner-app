@@ -33,6 +33,8 @@ class Handler extends ExceptionHandler
         switch (true) {
             case $e instanceof EventException:
                 return response()->json(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
+            case $e instanceof EmployeeException:
+                return response()->json(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
             default:
                 return response()->json(['message' => $e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }

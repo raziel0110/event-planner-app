@@ -33,7 +33,7 @@ class CustomersController extends Controller
                 'name'    => $request->input('name'),
                 'address' => $request->input('address'),
                 'email'   => $request->input('email'),
-                'phone'  => $request->input('phone')
+                'phone'   => $request->input('phone')
             ]);
 
             return response()->json(['customer' => $customer], Response::HTTP_CREATED);
