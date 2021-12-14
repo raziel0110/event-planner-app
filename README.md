@@ -7,3 +7,10 @@
  [-] - every event has multiple employee(2 types -> videographer and photographer, name, phone, and email)
  [-] - add authentification
  [-] - add user profile 
+ [✓] - integrate vue js
+ [+] - make dashboard admin ui
+
+## Legend
+# [-] - To do
+# [+] - In Progress
+# [✓] - Complete 
