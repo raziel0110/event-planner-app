@@ -8,7 +8,8 @@
  [-] - add authentification
  [-] - add user profile 
  [✓] - integrate vue js
- [+] - make dashboard admin ui
+ [✓] - make dashboard admin ui
+ [+] - finish employees controller crud operations
 
 ## Legend
 # [-] - To do
