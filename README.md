@@ -10,6 +10,7 @@
  [✓] - integrate vue js
  [✓] - make dashboard admin ui
  [+] - finish employees controller crud operations
+ [-] - split into components dashboard
 
 ## Legend
 # [-] - To do
