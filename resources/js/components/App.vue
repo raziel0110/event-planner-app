@@ -1,4 +1,5 @@
 <template>
+<div>
     <div>
         <!-- navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -49,12 +50,12 @@
                             <div class="text-muted small fw-bold text-uppercase px-3">CORE</div>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-3 active">
+                            <router-link to="/" exact class="nav-link px-3 active">
                                 <span class="me-2 mb-2">
                                    <i class="bi bi-speedometer2"></i>
                                 </span>
                                 <span>Dashboard</span>
-                            </a>
+                            </router-link>
                         </li>
                         <li class="my-3">
                             <hr class="dropdown-devider" />
@@ -72,12 +73,12 @@
                                 <div>
                                     <ul class="navbar-nav px-3">
                                         <li>
-                                            <a href="#" class="nav-link px-3">
+                                            <router-link to="/customers" exact class="nav-link px-3">
                                                 <span class="me-2 mb-2">
                                                     <i class="bi bi-people"></i>
                                                 </span>
                                                 <span>Customers</span>
-                                            </a>
+                                            </router-link>
                                         </li>
 
                                         <li>
@@ -139,8 +140,12 @@
                 </nav>
             </div>
         </div>
-<!-- end offcanvas -->
     </div>
+    <!-- end offcanvas -->
+    <main id="main">
+        <router-view></router-view>
+    </main>
+</div>
 </template>
 
 <script>
@@ -150,13 +155,21 @@ export default {
 </script>
 
 <style>
+    * {
+        font-family: "Roboto", sans-serif !important
+    }
+    
     :root {
-        --offcanvas-width: 270px;
+        --offcanvas-width: 240px;
         --topNavbarHeight: 54px;
     }
 
     .sidebar-nav {
         width: var(--offcanvas-width);
+    }
+
+    #main {
+        margin-left: var(--offcanvas-width);
     }
 
     .sidebar-link {
