@@ -1,203 +1,248 @@
 <template>
-<div> 
-  <!-- Dashboard header -->
-  <nav class="navbar navbar-expand-md navbar-light navbar_light">
-    <div class="container-fluid m">
-      <a class="navbar-brand" href="#" style="visibility:hidden;">Event</a>
+  <div>
+    <!-- Dashboard header -->
+    <nav
+      class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 shadow"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#"
+        >Company name</a
+      >
       <button
-        class="navbar-toggler"
+        class="navbar-toggler position-absolute d-md-none collapsed"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
+        data-toggle="collapse"
+        data-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse nav_collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar_auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Manage</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Internal
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Customers</a></li>
-              <li><a class="dropdown-item" href="#">Events</a></li>
-              <li><a class="dropdown-item" href="#">Employees</a></li>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item d-flex" style="width: 400px">
+          <input
+            class="form-control ml-3 search"
+            style="border-radius: 20px;"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-3">
+        <li class="nav-item">
+          <a class="btn btn-outline-danger" href="#">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav
+          id="sidebarMenu"
+          class="col-md-3 col-lg-2 d-md-block sidebar collapse"
+        >
+          <div class="sidebar-sticky pt-3">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <span data-feather="home"></span>
+                  Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file"></span>
+                  Orders
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Products
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <span data-feather="users"></span>
+                  Customers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Integrations
+                </a>
+              </li>
             </ul>
-          </li>
-        </ul>
-        <div class="navbar-nav navbar_nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Current user</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Settings</a>
-          </li>
-        </div>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <router-view></router-view>
+        </main>
       </div>
     </div>
-  </nav>
-
-  <!-- Sidebar -->
-  <aside class="sidebar">
-      <!-- <img src="" /> -->
-      <ul class="sidebar_icon">
-          <li><i class="fas fa-th-large"></i></li>
-          <li><i class="fas fa-user"></i></li>
-          <li><i class="fas fa-suitcase"></i></li>
-      </ul>
-
-      <ul class="sidebar_info">
-          <li><i class="fas fa-bell"></i></li>
-          <li>
-              <img :src="img" />
-          </li>
-      </ul>
-  </aside>
-  <!-- end sidebar -->
-
-  <!-- page area -->
-  <div class="graph_area">
-      <div class="container">
-          <router-view></router-view>
-      </div>
-  </div>  
-  <!-- end page area -->
-</div>
+  </div>
 </template>
 
 <script>
-import img from '../../assets/img/botez_2.jpeg'
+import img from "../../assets/img/botez_2.jpeg";
 
 export default {
-    data() {
-        return {
-            img: img
-        }
-    }
+  data() {
+    return {
+      img: img,
+    };
+  },
 };
 </script>
 
 <style scoped>
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
-/* navbar css */
-.navbar-light .navbar_auto li a.nav-link {
-  color: #1a1a1a;
-  font-size: 14px;
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+body {
+  font-size: 0.875rem;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 19; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  background-color: royalblue;
+  border: none;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.sidebar .nav-link {
   font-weight: 500;
-  padding: 0.5rem 0.8rem;
+  color: #333;
 }
 
-.navbar_nav .nav-item a.nav-link {
-  color: #142535;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 0.5rem 0.8rem;
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #999;
 }
 
-.navbar_light {
-  box-shadow: 0 8px 17px 2px rgba(193, 193, 193, 0.14),
-    0 3px 14px 2px rgba(185, 185, 185, 0.12),
-    0 5px 5px -3px rgba(171, 171, 171, 0.2);
-
-  background: #fff;
+.sidebar .nav-link.active {
+  color: #ffffff;
+  background-color: rgb(103, 142, 226);
+  height: 100%;
+  left: 0;
+  width: 80%;
+  border-radius: 0 20px 20px 0;
 }
 
-/* sidebar css */
-aside.sidebar {
-    position: fixed;
-    width: 75px;
-    background-color: #fff;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    box-shadow: 0 8px 17px 2px rgba(193, 193, 193, 0.14),
-    0 3px 14px 2px rgba(185, 185, 185, 0.12),
-    0 5px 5px -3px rgba(171, 171, 171, 0.2);
-    padding: 1rem 0;
-    text-align: center;
+.sidebar .nav-link:hover {
+  color: rgb(103, 142, 226);
+  background-color: rgb(243, 241, 241);
+  height: 100%;
+  right: 20%;
+  width: 100%;
+  border-radius: 20px 0 0 20px;
 }
 
-.sidebar img {
-    width: 60px;
+.sidebar-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
 }
 
-.sidebar_icon,
-.sidebar_info {
-    margin-top: 8rem;
-    padding: 0;
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
 }
 
-
-.sidebar_icon {
-    padding: 0.5rem;
+.navbar-brand:hover {
+  color: rgba(0, 0, 0, 0.25);
 }
 
-.sidebar_icon li,
-.sidebar_info li {
-    list-style: none;
-    margin:1rem 0;
-    padding: 0.5rem 0;
-    border-left:2px solid #fff;
-    transition: 0.5s ease-in;
-}
-.sidebar_icon li:hover,
-.sidebar_icon li i:hover,
-.sidebar_info li i:hover {
-    border-color: #049148;
-    color: #049148;
-    /* opacity: 1; */
-}
-.sidebar_icon i,
-.sidebar_info i {
-    color: #888;
-    font-size: 24px;
+.navbar .navbar-toggler {
+  top: 0.25rem;
+  right: 1rem;
 }
 
-.sidebar_info li img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%
+.navbar .form-control {
+  padding: 0.75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+.search {
+  border: solid 2px rgba(0, 0, 255, 0.3) !important;
 }
 
-@media only screen and (max-width:767px) {
-    aside.sidebar {
-        width: 50px;
-    }
-    .navbar_light {
-        height: 55px;
-    }
-    .navbar_light button {
-        position: absolute;
-        right: 15px;
-        z-index: 99;
-    }
-    .nav_collapse {
-        position: absolute;
-        top: 54px;
-        background-color: #fff;
-        z-index: 9;
-        width: 75%;
-        height: 100vh;
-        left: 0;
-        right: 0;
-        padding: 0 1rem;
-    }
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.navbar {
+  z-index:10;
+}
 </style>
