@@ -23,6 +23,12 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
+Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function() {
+    Route::get('/test', function() {
+        return response()->json(['message' => 'test middleware'], 200);
+    });
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
