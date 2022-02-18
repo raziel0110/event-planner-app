@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,13 +22,14 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/logout', [AuthController::class, 'logout']);
-});
 
-Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function() {
-    Route::get('/test', function() {
-        return response()->json(['message' => 'test middleware'], 200);
+    Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function() {
+        Route::get('/pending-users', [UserController::class, 'getPendingUsers']);
+        Route::put('/approve-user/{id}', [UserController::class, 'approveUser']);
     });
 });
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
