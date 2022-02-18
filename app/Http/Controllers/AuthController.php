@@ -11,19 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // // register 
+    // register 
     public function register(Request $request)
     {
-        $attr = $this->validate($request, [
+        $this->validate($request, [
             'name'     => 'required|string',
-            'email'    => 'required|string',
-            'password' => 'required|string'
+            'email'    => 'required|email',
+            'password' => 'required'
         ]);
 
         $user = User::create([
-            'name'     => $attr['name'],
-            'email'    => $attr['email'],
-            'password' => Hash::make($attr['password']) 
+            'name'     => $request->input('name'),
+            'email'    => $request->input('email'),
+            'password' => Hash::make($request->input('password')) 
         ]);
 
         $token = $user->createToken('tokens')->plainTextToken;
@@ -42,6 +42,10 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request->input('email'))->firstOrFail();
+
+        if (!$user->approved_at) {
+            return response()->json(['message' => 'Your account must be approved!'], 403);
+        }
 
         $token = $user->createToken('tokens')->plainTextToken;
 
